@@ -1,4 +1,5 @@
 <script setup>
+import httpService from '@/services/HttpService';
 import Post from '@/components/Post.vue';
 import { reactive, onMounted } from 'vue';
 
@@ -11,10 +12,12 @@ const state = reactive({
   },
 });
 
-onMounted(() => {
+onMounted(async () => {
   const passJson = history.state.data;
   if (passJson) {
     state.post = JSON.parse(passJson);
+
+    const data = await httpService.postCommentFindAll(state.post.id);
   }
 });
 </script>
