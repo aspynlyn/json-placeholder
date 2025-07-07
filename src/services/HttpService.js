@@ -11,6 +11,16 @@ class HttpService {
     const res = await axios.get(`/posts/${postId}/comments`);
     return res.data;
   }
+
+  async commentSave(jsonBody){
+    const res = await axios.post('/comments', jsonBody);
+    return res.data;
+  }
+
+  async postSave(jsonBody){
+    const res = await axios.post('/posts', jsonBody);
+    return res.data;
+  }
 }
 
 export default new HttpService();
